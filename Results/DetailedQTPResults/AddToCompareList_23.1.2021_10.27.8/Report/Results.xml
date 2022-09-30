@@ -1,0 +1,908 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="Micro Focus Unified Functional Testing" productVer="15.0.2" os="" host="DESKTOP-BJRRT0E"><DocLocation><![CDATA[F:\DemoWebShopHybrid\TestCases\AddToCompareList]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus Unified Functional Testing"  >
+<DName><![CDATA[AddToCompareList]]></DName>
+<Res><![CDATA[AddToCompareList_23.1.2021_10.27.8]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xlsx]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[comparelist]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:45]]></Time>
+<TimeTick>1611377865</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",1]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:45]]></Time>
+<TimeTick>1611377865</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" status="Passed" >
+<Disp><![CDATA[Run "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="10" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[[ Log in ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:50]]></Time>
+<TimeTick>1611377870</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="14" >
+<Disp><![CDATA[[ Log in ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj ><![CDATA['[ Log in ] link' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:50]]></Time>
+<TimeTick>1611377870</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="15" status="Passed" >
+<Disp><![CDATA['[ Log in ] link' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[[ Email ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:52]]></Time>
+<TimeTick>1611377872</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="17" >
+<Disp><![CDATA[[ Email ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj ><![CDATA[Email field is available]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:52]]></Time>
+<TimeTick>1611377872</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="18" status="Passed" >
+<Disp><![CDATA[Email field is available]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[[ Email ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:52]]></Time>
+<TimeTick>1611377872</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA["[ Email ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;kind&quot; has the expected value: &quot;singleline&quot;.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:52]]></Time>
+<TimeTick>1611377872</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="21" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Email ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="20" status="Passed" >
+<Disp><![CDATA[[ Email ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[[ Email ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA["[ Email ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;type&quot; has the expected value: &quot;text&quot;.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="24" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Email ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="23" status="Passed" >
+<Disp><![CDATA[[ Email ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[[ Email ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA["[ Email ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="27" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Email ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="26" status="Passed" >
+<Disp><![CDATA[[ Email ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[[ Email ].Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Rahman2@Rahman.com"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="30" >
+<Disp><![CDATA[[ Email ].Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj ><![CDATA[Value - 'Rahman2@Rahman.com' entered in Field - '[ Email ] edit box']]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:53]]></Time>
+<TimeTick>1611377873</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="31" status="Passed" >
+<Disp><![CDATA[Value - 'Rahman2@Rahman.com' entered in Field - '[ Email ] edit box']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[[ Password ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="33" >
+<Disp><![CDATA[[ Password ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj ><![CDATA[Email field is available]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="34" status="Passed" >
+<Disp><![CDATA[Email field is available]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[[ Password ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA["[ Password ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;kind&quot; has the expected value: &quot;singleline&quot;.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="37" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Password ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="36" status="Passed" >
+<Disp><![CDATA[[ Password ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[[ Password ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA["[ Password ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;type&quot; has the expected value: &quot;password&quot;.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="40" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Password ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="39" status="Passed" >
+<Disp><![CDATA[[ Password ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[[ Password ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA["[ Password ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:54]]></Time>
+<TimeTick>1611377874</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="43" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Password ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="42" status="Passed" >
+<Disp><![CDATA[[ Password ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[[ Password ].Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["Rahman@12345"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="46" >
+<Disp><![CDATA[[ Password ].Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj ><![CDATA[Value - 'Rahman@12345' entered in Field - '[ Password ] edit box']]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="47" status="Passed" >
+<Disp><![CDATA[Value - 'Rahman@12345' entered in Field - '[ Password ] edit box']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[[ Log in ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="49" >
+<Disp><![CDATA[[ Log in ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj ><![CDATA[Login button is avaiable]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="50" status="Passed" >
+<Disp><![CDATA[Login button is avaiable]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[[ Log in ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="53" >
+<Disp><![CDATA[[ Log in ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj ><![CDATA['[ Log in ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:55]]></Time>
+<TimeTick>1611377875</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="54" status="Passed" >
+<Disp><![CDATA['[ Log in ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[[ q ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="56" >
+<Disp><![CDATA[[ q ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj ><![CDATA[Search field Exist]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="57" status="Passed" >
+<Disp><![CDATA[Search field Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[[ q ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebEdit]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA["[ q ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="60" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ q ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="59" status="Passed" >
+<Disp><![CDATA[[ q ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[[ q ].Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["computer"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="63" >
+<Disp><![CDATA[[ q ].Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[[ Search ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="65" >
+<Disp><![CDATA[[ Search ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj ><![CDATA[Search Button Exist]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:27:59]]></Time>
+<TimeTick>1611377879</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="66" status="Passed" >
+<Disp><![CDATA[Search Button Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[[ Search ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebButton]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:00]]></Time>
+<TimeTick>1611377880</TimeTick>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA["[ Search ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:00]]></Time>
+<TimeTick>1611377880</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="69" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Search ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="68" status="Passed" >
+<Disp><![CDATA[[ Search ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[[ Search ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:00]]></Time>
+<TimeTick>1611377880</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="72" >
+<Disp><![CDATA[[ Search ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj ><![CDATA['[ Search ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:00]]></Time>
+<TimeTick>1611377880</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="73" status="Passed" >
+<Disp><![CDATA['[ Search ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:02]]></Time>
+<TimeTick>1611377882</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="75" >
+<Disp><![CDATA[[ Build your own computer ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj ><![CDATA[Build your own computer Link is available]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:02]]></Time>
+<TimeTick>1611377882</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="76" status="Passed" >
+<Disp><![CDATA[Build your own computer Link is available]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:02]]></Time>
+<TimeTick>1611377882</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="79" >
+<Disp><![CDATA[[ Build your own computer ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj ><![CDATA['[ Build your own computer ] link' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:02]]></Time>
+<TimeTick>1611377882</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="80" status="Passed" >
+<Disp><![CDATA['[ Build your own computer ] link' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer  ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:07]]></Time>
+<TimeTick>1611377887</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="82" >
+<Disp><![CDATA[[ Build your own computer  ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj ><![CDATA[Build your own computer title is present]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:07]]></Time>
+<TimeTick>1611377887</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="83" status="Passed" >
+<Disp><![CDATA[Build your own computer title is present]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer  ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:07]]></Time>
+<TimeTick>1611377887</TimeTick>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA["[ Build your own computer  ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:07]]></Time>
+<TimeTick>1611377887</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="86" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Build your own computer  ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="10" nRep="85" status="Passed" >
+<Disp><![CDATA[[ Build your own computer  ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[[ Add to compare list ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="89" >
+<Disp><![CDATA[[ Add to compare list ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj ><![CDATA[Add to compare list button is present]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="90" status="Passed" >
+<Disp><![CDATA[Add to compare list button is present]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[[ Add to compare list ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebButton]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA["[ Add to compare list ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="93" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Add to compare list ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="92" status="Passed" >
+<Disp><![CDATA[[ Add to compare list ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[[ Add to compare list ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="96" >
+<Disp><![CDATA[[ Add to compare list ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj ><![CDATA['[ Add to compare list ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:08]]></Time>
+<TimeTick>1611377888</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="97" status="Passed" >
+<Disp><![CDATA['[ Add to compare list ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:10]]></Time>
+<TimeTick>1611377890</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="99" >
+<Disp><![CDATA[[ Build your own computer ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj ><![CDATA[Product is available in current the page]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:10]]></Time>
+<TimeTick>1611377890</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="100" status="Passed" >
+<Disp><![CDATA[Product is available in current the page]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[[ Build your own computer ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:10]]></Time>
+<TimeTick>1611377890</TimeTick>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA["[ Build your own computer ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:10]]></Time>
+<TimeTick>1611377890</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="103" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Build your own computer ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="102" status="Passed" >
+<Disp><![CDATA[[ Build your own computer ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj ><![CDATA[Failed while adding to compare List]]></Obj>
+<Details ><![CDATA[FAILED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:11]]></Time>
+<TimeTick>1611377891</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="105" status="Passed" >
+<Disp><![CDATA[Failed while adding to compare List]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[[ q ].Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["shoe"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:11]]></Time>
+<TimeTick>1611377891</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="108" >
+<Disp><![CDATA[[ q ].Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[[ Search ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:11]]></Time>
+<TimeTick>1611377891</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="111" >
+<Disp><![CDATA[[ Search ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj ><![CDATA['[ Search ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:11]]></Time>
+<TimeTick>1611377891</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="112" status="Passed" >
+<Disp><![CDATA['[ Search ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[[ Women's Running Shoe ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:13]]></Time>
+<TimeTick>1611377893</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="115" >
+<Disp><![CDATA[[ Women's Running Shoe ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj ><![CDATA['[ Women's Running Shoe ] link' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:13]]></Time>
+<TimeTick>1611377893</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="116" status="Passed" >
+<Disp><![CDATA['[ Women's Running Shoe ] link' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[[ Add to compare list ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:18]]></Time>
+<TimeTick>1611377898</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="120" >
+<Disp><![CDATA[[ Add to compare list ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj ><![CDATA['[ Add to compare list ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:18]]></Time>
+<TimeTick>1611377898</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="121" status="Passed" >
+<Disp><![CDATA['[ Add to compare list ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[[ Remove ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="124" >
+<Disp><![CDATA[[ Remove ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T71">
+<Obj ><![CDATA[Remove button is available]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="125" status="Passed" >
+<Disp><![CDATA[Remove button is available]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[[ Remove ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebButton]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA["[ Remove ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="128" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Remove ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="9" nRep="127" status="Passed" >
+<Disp><![CDATA[[ Remove ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[[ Remove ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="131" >
+<Disp><![CDATA[[ Remove ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj ><![CDATA['[ Remove ] button' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:23]]></Time>
+<TimeTick>1611377903</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="132" status="Passed" >
+<Disp><![CDATA['[ Remove ] button' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[[ Clear list ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="134" >
+<Disp><![CDATA[[ Clear list ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T77">
+<Obj ><![CDATA[Clearlist link is available]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="135" status="Passed" >
+<Disp><![CDATA[Clearlist link is available]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[[ Clear list ]]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA["[ Clear list ]"]]></Obj>
+<Details plainTxt="False" ><![CDATA[Property &quot;visible&quot; has the expected value: True.]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="138" status="Passed" nType="CheckProperty" >
+<Disp><![CDATA["[ Clear list ]"]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="137" status="Passed" >
+<Disp><![CDATA[[ Clear list ]]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[[ Clear list ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="141" >
+<Disp><![CDATA[[ Clear list ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T81">
+<Obj ><![CDATA['[ Clear list ] link' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:26]]></Time>
+<TimeTick>1611377906</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="142" status="Passed" >
+<Disp><![CDATA['[ Clear list ] link' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[[ You have no items to compare.  ].Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:28]]></Time>
+<TimeTick>1611377908</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="144" >
+<Disp><![CDATA[[ You have no items to compare.  ].Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj ><![CDATA[Successfully cleard the the compare cart]]></Obj>
+<Details ><![CDATA[PASSED]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:28]]></Time>
+<TimeTick>1611377908</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="145" status="Passed" >
+<Disp><![CDATA[Successfully cleard the the compare cart]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[[ Log out ].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:28]]></Time>
+<TimeTick>1611377908</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="148" >
+<Disp><![CDATA[[ Log out ].Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj ><![CDATA['[ Log out ] link' Clicked]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:29]]></Time>
+<TimeTick>1611377909</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="149" status="Passed" >
+<Disp><![CDATA['[ Log out ] link' Clicked]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T86">
+<Obj plainTxt="False" ><![CDATA[[ Demo Web Shop ].Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:31]]></Time>
+<TimeTick>1611377911</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="151" >
+<Disp><![CDATA[[ Demo Web Shop ].Close]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T87">
+<Obj ><![CDATA['[ Browser ] browser' closed]]></Obj>
+<Details ><![CDATA[Passed]]></Details>
+<Time><![CDATA[23-01-2021 - 10:28:32]]></Time>
+<TimeTick>1611377912</TimeTick>
+<NodeArgs eType="User" icon="7" nRep="152" status="Passed" >
+<Disp><![CDATA['[ Browser ] browser' closed]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="23-01-2021 - 10:27:44" eTime="23-01-2021 - 10:28:32" passed="41" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Passed" >
+<Disp><![CDATA[comparelist Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[AddToCompareList Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="23-01-2021 - 10:27:41" eTime="23-01-2021 - 10:28:32" passed="41" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Passed" >
+<Disp><![CDATA[Test AddToCompareList Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

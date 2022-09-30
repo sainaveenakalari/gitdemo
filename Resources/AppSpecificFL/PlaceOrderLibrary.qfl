@@ -1,0 +1,11 @@
+﻿Function fnComputerOrder
+	If Browser("name:=Demo Web Shop.*").Page("title:=Demo Web Shop.*").Link("name:=Build your own cheap computer").Exist Then
+		Reporter.ReportEvent micPass, "Build cheap computer link is available", "PASSED"
+		Browser("name:=Demo Web Shop.*").Page("title:=Demo Web Shop.*").Link("name:=Build your own cheap computer").fnWebLink
+	else
+		Reporter.ReportEvent micFail, "Build cheap computer link is not present", "Failed"
+	End If
+	
+
+	
+End Function
